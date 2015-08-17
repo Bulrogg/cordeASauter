@@ -8,23 +8,23 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
   $scope.etat.etapeEnCours = 'CONFIGURATION'; 
 
   $scope.configurationEntrainements = [
-    { id:0, dureeTotale:13, tempsEffort:2, tempsRecuperation:2 },
-    { id:1, dureeTotale:5*60, tempsEffort:10, tempsRecuperation:20 },
-    { id:2, dureeTotale:8*60, tempsEffort:10, tempsRecuperation:20 },
-    { id:3, dureeTotale:10*60, tempsEffort:15, tempsRecuperation:15 },
-    { id:4, dureeTotale:12*60, tempsEffort:15, tempsRecuperation:15 },
-    { id:5, dureeTotale:15*60, tempsEffort:20, tempsRecuperation:10 },
-    { id:6, dureeTotale:18*60, tempsEffort:20, tempsRecuperation:10 },
-    { id:7, dureeTotale:20*60, tempsEffort:25, tempsRecuperation:10 },
-    { id:8, dureeTotale:20*60, tempsEffort:30, tempsRecuperation:10 },
-    { id:9, dureeTotale:20*60, tempsEffort:40, tempsRecuperation:10 },
-    { id:10, dureeTotale:25*60, tempsEffort:50, tempsRecuperation:10 },
-    { id:11, dureeTotale:25*60, tempsEffort:60, tempsRecuperation:10 },
-    { id:12, dureeTotale:30*60, tempsEffort:60, tempsRecuperation:10 },
-    { id:13, dureeTotale:30*60, tempsEffort:75, tempsRecuperation:10 },
-    { id:14, dureeTotale:30*60, tempsEffort:90, tempsRecuperation:10 },
-    { id:15, dureeTotale:30*60, tempsEffort:105, tempsRecuperation:10 },
-    { id:16, dureeTotale:30*60, tempsEffort:120, tempsRecuperation:10 }
+  { id:0, dureeTotale:13, tempsEffort:2, tempsRecuperation:2 },
+  { id:1, dureeTotale:5*60, tempsEffort:10, tempsRecuperation:20 },
+  { id:2, dureeTotale:8*60, tempsEffort:10, tempsRecuperation:20 },
+  { id:3, dureeTotale:10*60, tempsEffort:15, tempsRecuperation:15 },
+  { id:4, dureeTotale:12*60, tempsEffort:15, tempsRecuperation:15 },
+  { id:5, dureeTotale:15*60, tempsEffort:20, tempsRecuperation:10 },
+  { id:6, dureeTotale:18*60, tempsEffort:20, tempsRecuperation:10 },
+  { id:7, dureeTotale:20*60, tempsEffort:25, tempsRecuperation:10 },
+  { id:8, dureeTotale:20*60, tempsEffort:30, tempsRecuperation:10 },
+  { id:9, dureeTotale:20*60, tempsEffort:40, tempsRecuperation:10 },
+  { id:10, dureeTotale:25*60, tempsEffort:50, tempsRecuperation:10 },
+  { id:11, dureeTotale:25*60, tempsEffort:60, tempsRecuperation:10 },
+  { id:12, dureeTotale:30*60, tempsEffort:60, tempsRecuperation:10 },
+  { id:13, dureeTotale:30*60, tempsEffort:75, tempsRecuperation:10 },
+  { id:14, dureeTotale:30*60, tempsEffort:90, tempsRecuperation:10 },
+  { id:15, dureeTotale:30*60, tempsEffort:105, tempsRecuperation:10 },
+  { id:16, dureeTotale:30*60, tempsEffort:120, tempsRecuperation:10 }
   ];
 
   $scope.configurationSelectionnee = $scope.configurationEntrainements[0];
@@ -42,16 +42,6 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
     finExercice();
     chargerConfiguration();
   };
-
-/*
-  function secondeToStr(nbSecond) {
-    var nbMin = Math.floor(nbSecond / 60);
-    var nbSec = nbSecond % 60;
-    var minStr = nbMin > 0 ? nbMin + ' min' : '';
-    var secStr = nbSec > 0 ? nbSec + ' sec' : '';
-    return minStr + ' ' + secStr;
-  }
-  */
 
   function chargerConfiguration() {
     $scope.etat.etapeEnCours = 'CONFIGURATION';
@@ -105,4 +95,14 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
     }
   }
 
-}]);
+}])
+
+.filter('secToStr', function() {
+  return function(nbSecond) {
+    var nbMin = Math.floor(nbSecond / 60);
+    var nbSec = nbSecond % 60;
+    var minStr = nbMin > 0 ? nbMin + ' min' : '';
+    var secStr = nbSec > 0 ? nbSec + ' sec' : '';
+    return minStr + ' ' + secStr;
+  };
+});

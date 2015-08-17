@@ -32,9 +32,9 @@
                 ng-repeat="conf in configurationEntrainements" 
                 ng-class="{'active': conf.id===configurationSelectionnee.id}"
                 ng-click="selectionnerConfigurationHandler(conf);">
-                <td>{{conf.dureeTotale}}</td>
-                <td>{{conf.tempsEffort}}</td>
-                <td>{{conf.tempsRecuperation}}</td>
+                <td>{{conf.dureeTotale | secToStr}}</td>
+                <td>{{conf.tempsEffort | secToStr}}</td>
+                <td>{{conf.tempsRecuperation | secToStr}}</td>
             </tr>
             </table>
             <input type="button" class="btn btn-primary col-xs-12" value="C'est parti !" ng-click="cestPartiHandler();"/>
