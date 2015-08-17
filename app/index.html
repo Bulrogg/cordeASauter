@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js">
-  <head>
+<head>
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
@@ -14,51 +14,53 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
-  <body ng-app="corde-a-sauter-app">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+</head>
+<body ng-app="corde-a-sauter-app">
 
-    <!-- Add your site or application content here -->
     <div class="container" ng-controller="main-controller">
 
-      <div class="header">
-        <h3 class="text-muted">cordeASauter</h3>
-      </div>
-
-        <table class="table table-bordered">
+        <div class="onglet-configuration" ng-hide="exerciceEnCours">
+          <div class="header">
+            <h3 class="text-muted">corde à sauter</h3>
+          </div>
+          <table class="table table-bordered">
             <tr>
                 <th>Durée totale</th>
                 <th>Temps d'effort</th>
                 <th>Temps de récupération</th>
             </tr>
-          <tr ng-repeat="conf in configurationEntrainements track by $index">
-            <td>{{conf.dureeTotal}}</td>
-            <td>{{conf.tempsEffort}}</td>
-            <td>{{conf.tempsRecuperation}}</td>
-          </tr>
-        </table>
+            <tr 
+                ng-repeat="conf in configurationEntrainements" 
+                ng-class="{'active': conf.id===configurationSelectionnee.id}"
+                ng-click="selectionnerConfigurationHandler(conf);">
+                <td>{{conf.dureeTotalLibelle}}</td>
+                <td>{{conf.tempsEffortLibelle}}</td>
+                <td>{{conf.tempsRecuperationLibelle}}</td>
+            </tr>
+            </table>
+            <input type="button" class="btn btn-primary" value="C'est parti !" ng-click="cestPartiHandler();"/>
+        </div>
+
+        <div class="onglet-exercice-en-cours" ng-show="exerciceEnCours">
+            <input type="button" class="btn btn-primary" value="Stop" ng-click="stopHandler();"/>
+        </div>            
 
     </div>
 
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <!-- endbuild -->
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<!-- endbuild -->
 </body>
 </html>
