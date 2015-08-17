@@ -18,8 +18,7 @@
 <body ng-app="corde-a-sauter-app">
 
     <div class="container" ng-controller="main-controller">
-
-        <div class="onglet-configuration" ng-hide="exerciceEnCours">
+        <div class="etat-configuration" ng-show="etat.etapeEnCours === 'CONFIGURATION'">
           <div class="header">
             <h3 class="text-muted">corde à sauter</h3>
           </div>
@@ -33,17 +32,49 @@
                 ng-repeat="conf in configurationEntrainements" 
                 ng-class="{'active': conf.id===configurationSelectionnee.id}"
                 ng-click="selectionnerConfigurationHandler(conf);">
-                <td>{{conf.dureeTotalLibelle}}</td>
-                <td>{{conf.tempsEffortLibelle}}</td>
-                <td>{{conf.tempsRecuperationLibelle}}</td>
+                <td>{{conf.dureeTotale}}</td>
+                <td>{{conf.tempsEffort}}</td>
+                <td>{{conf.tempsRecuperation}}</td>
             </tr>
             </table>
-            <input type="button" class="btn btn-primary" value="C'est parti !" ng-click="cestPartiHandler();"/>
+            <input type="button" class="btn btn-primary col-xs-12" value="C'est parti !" ng-click="cestPartiHandler();"/>
         </div>
 
-        <div class="onglet-exercice-en-cours" ng-show="exerciceEnCours">
-            <input type="button" class="btn btn-primary" value="Stop" ng-click="stopHandler();"/>
-        </div>            
+        <div class="etat-preparation" ng-show="etat.etapeEnCours === 'PREPARATION'">
+            preparation
+            {{etat.nbSecDepuisLeDebut}}
+            {{etat.nbSecAvantFinEtape}}
+            {{etat.nbSecAvantFinEntrainement}}
+            {{etat.etapeEnCours}}
+            <input type="button" class="btn btn-default" value="Stop" ng-click="stopHandler();"/>
+        </div>
+
+        <div class="etat-effort" ng-show="etat.etapeEnCours === 'EFFORT'">
+            effort
+            {{etat.nbSecDepuisLeDebut}}
+            {{etat.nbSecAvantFinEtape}}
+            {{etat.nbSecAvantFinEntrainement}}
+            {{etat.etapeEnCours}}
+            <input type="button" class="btn btn-default" value="Stop" ng-click="stopHandler();"/>
+        </div>
+
+        <div class="etat-repos" ng-show="etat.etapeEnCours === 'REPOS'">
+            repos
+            {{etat.nbSecDepuisLeDebut}}
+            {{etat.nbSecAvantFinEtape}}
+            {{etat.nbSecAvantFinEntrainement}}
+            {{etat.etapeEnCours}}
+            <input type="button" class="btn btn-default" value="Stop" ng-click="stopHandler();"/>
+        </div>
+
+        <div class="etat-termine" ng-show="etat.etapeEnCours === 'TERMINE'">
+            TERMINé
+            {{etat.nbSecDepuisLeDebut}}
+            {{etat.nbSecAvantFinEtape}}
+            {{etat.nbSecAvantFinEntrainement}}
+            {{etat.etapeEnCours}}
+            <input type="button" class="btn btn-default" value="Stop" ng-click="stopHandler();"/>
+        </div>
 
     </div>
 
