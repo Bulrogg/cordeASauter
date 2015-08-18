@@ -62,7 +62,7 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
   }
 
   function majDataExerciceEnCours() {
-    var preparationEnSeconde = 1;
+    var preparationEnSeconde = 15;
     var nbSecTotalEntrainement = $scope.configurationSelectionnee.dureeTotale;
     var nbSecDepuisLeDebut = $scope.etat.nbSecDepuisLeDebut;
     var nbSecAvantFinEntrainement = nbSecTotalEntrainement - nbSecDepuisLeDebut  + 1;
