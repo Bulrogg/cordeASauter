@@ -8,7 +8,6 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
   $scope.etat.etapeEnCours = 'CONFIGURATION'; 
 
   $scope.configurationEntrainements = [
-  { id:0, dureeTotale:30, tempsEffort:4, tempsRecuperation:6 },
   { id:1, dureeTotale:5*60, tempsEffort:10, tempsRecuperation:20 },
   { id:2, dureeTotale:8*60, tempsEffort:10, tempsRecuperation:20 },
   { id:3, dureeTotale:10*60, tempsEffort:15, tempsRecuperation:15 },
