@@ -19,9 +19,7 @@
 
     <div class="container" ng-controller="main-controller">
         <div class="etat-configuration" ng-show="etat.etapeEnCours === 'CONFIGURATION'">
-          <div class="header">
-            <h3 class="text-muted">corde à sauter</h3>
-          </div>
+          <h3 class="text-muted">corde à sauter</h3>
           <table class="table table-bordered">
             <tr>
                 <th>Durée totale</th>
@@ -41,39 +39,47 @@
         </div>
 
         <div class="etat-preparation" ng-show="etat.etapeEnCours === 'PREPARATION'">
-            preparation
-            {{etat.nbSecDepuisLeDebut}}
-            {{etat.nbSecAvantFinEtape}}
-            {{etat.nbSecAvantFinEntrainement}}
-            {{etat.etapeEnCours}}
-            <input type="button" class="btn btn-default" value="Stop" ng-click="stopHandler();"/>
+            <div>
+                <span class="etape-titre">Préparation</span>
+                <span class="etape-suite">{{etat.nbSecAvantFinEtape}}</span>
+            </div>
+            <input type="button" class="btn btn-default col-xs-12" value="Stop" ng-click="stopHandler();"/>
         </div>
 
         <div class="etat-effort" ng-show="etat.etapeEnCours === 'EFFORT'">
-            effort
-            {{etat.nbSecDepuisLeDebut}}
-            {{etat.nbSecAvantFinEtape}}
-            {{etat.nbSecAvantFinEntrainement}}
-            {{etat.etapeEnCours}}
-            <input type="button" class="btn btn-default" value="Stop" ng-click="stopHandler();"/>
+            <div>
+                <span class="etape-titre">Go Go Go</span>
+                <span class="etape-suite">{{etat.nbSecAvantFinEtape}}</span>
+            </div>
+            <div>
+                <span class="entrainement-debut">Début : {{etat.nbSecDepuisDebutEntrainement | secToStr}}</span>
+                <span class="entrainement-fin">Fin : {{etat.nbSecAvantFinEntrainement | secToStr}}</span>
+            </div>
+            <input type="button" class="btn btn-default col-xs-12" value="Stop" ng-click="stopHandler();"/>
         </div>
 
         <div class="etat-repos" ng-show="etat.etapeEnCours === 'REPOS'">
-            repos
-            {{etat.nbSecDepuisLeDebut}}
-            {{etat.nbSecAvantFinEtape}}
-            {{etat.nbSecAvantFinEntrainement}}
-            {{etat.etapeEnCours}}
-            <input type="button" class="btn btn-default" value="Stop" ng-click="stopHandler();"/>
+            <div>
+                <span class="etape-titre">Repos</span>
+                <span class="etape-suite">{{etat.nbSecAvantFinEtape}}</span>
+            </div>
+            <div>
+                <span class="entrainement-debut">Début : {{etat.nbSecDepuisDebutEntrainement | secToStr}}</span>
+                <span class="entrainement-fin">Fin : {{etat.nbSecAvantFinEntrainement | secToStr}}</span>
+            </div>
+            <input type="button" class="btn btn-default col-xs-12" value="Stop" ng-click="stopHandler();"/>
         </div>
 
         <div class="etat-termine" ng-show="etat.etapeEnCours === 'TERMINE'">
-            TERMINé
-            {{etat.nbSecDepuisLeDebut}}
-            {{etat.nbSecAvantFinEtape}}
-            {{etat.nbSecAvantFinEntrainement}}
-            {{etat.etapeEnCours}}
-            <input type="button" class="btn btn-default" value="Stop" ng-click="stopHandler();"/>
+            <div>
+                <span class="etape-titre">Fin</span>
+                <span class="etape-suite">-</span>
+            </div>
+            <div>
+                <span class="entrainement-debut">Début : {{etat.nbSecDepuisDebutEntrainement | secToStr}}</span>
+                <span class="entrainement-fin">Fin : {{etat.nbSecAvantFinEntrainement | secToStr}}</span>
+            </div>
+            <input type="button" class="btn btn-default col-xs-12" value="Revenir" ng-click="stopHandler();"/>
         </div>
 
     </div>

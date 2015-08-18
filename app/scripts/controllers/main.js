@@ -8,7 +8,7 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
   $scope.etat.etapeEnCours = 'CONFIGURATION'; 
 
   $scope.configurationEntrainements = [
-  { id:0, dureeTotale:13, tempsEffort:2, tempsRecuperation:2 },
+  { id:0, dureeTotale:30, tempsEffort:4, tempsRecuperation:6 },
   { id:1, dureeTotale:5*60, tempsEffort:10, tempsRecuperation:20 },
   { id:2, dureeTotale:8*60, tempsEffort:10, tempsRecuperation:20 },
   { id:3, dureeTotale:10*60, tempsEffort:15, tempsRecuperation:15 },
@@ -65,16 +65,18 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
     var preparationEnSeconde = 1;
     var nbSecTotalEntrainement = $scope.configurationSelectionnee.dureeTotale;
     var nbSecDepuisLeDebut = $scope.etat.nbSecDepuisLeDebut;
-    var nbSecAvantFinEntrainement = nbSecTotalEntrainement - nbSecDepuisLeDebut;
+    var nbSecAvantFinEntrainement = nbSecTotalEntrainement - nbSecDepuisLeDebut  + 1;
     if(nbSecDepuisLeDebut < preparationEnSeconde) {  
       $scope.etat.etapeEnCours = 'PREPARATION';
       $scope.etat.nbSecAvantFinEtape = preparationEnSeconde - nbSecDepuisLeDebut;
       $scope.etat.nbSecAvantFinEntrainement = nbSecAvantFinEntrainement;
+      $scope.etat.nbSecDepuisDebutEntrainement = 0;
     }
-    else if(nbSecDepuisLeDebut >= nbSecTotalEntrainement) {
+    else if(nbSecDepuisLeDebut > nbSecTotalEntrainement) {
       $scope.etat.etapeEnCours = 'TERMINE';
       $scope.etat.nbSecAvantFinEtape = null;
       $scope.etat.nbSecAvantFinEntrainement = 0;
+      $scope.etat.nbSecDepuisDebutEntrainement = nbSecTotalEntrainement;
     }
     else {
       var nbSecEffort = $scope.configurationSelectionnee.tempsEffort;
@@ -86,11 +88,13 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
         $scope.etat.etapeEnCours = 'EFFORT';
         $scope.etat.nbSecAvantFinEtape = nbSecEffort - secondeSerie;
         $scope.etat.nbSecAvantFinEntrainement = nbSecAvantFinEntrainement;
+        $scope.etat.nbSecDepuisDebutEntrainement =  nbSecDepuisLeDebut - preparationEnSeconde;
       }
       else {
         $scope.etat.etapeEnCours = 'REPOS';
         $scope.etat.nbSecAvantFinEtape = nbSecRecuperation - (secondeSerie - nbSecEffort);
         $scope.etat.nbSecAvantFinEntrainement = nbSecAvantFinEntrainement;
+        $scope.etat.nbSecDepuisDebutEntrainement =  nbSecDepuisLeDebut - preparationEnSeconde;
       }
     }
   }
@@ -102,7 +106,7 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
     var nbMin = Math.floor(nbSecond / 60);
     var nbSec = nbSecond % 60;
     var minStr = nbMin > 0 ? nbMin + ' min' : '';
-    var secStr = nbSec > 0 ? nbSec + ' sec' : '';
+    var secStr = nbSec >= 0 ? nbSec + ' sec' : '';
     return minStr + ' ' + secStr;
   };
 });

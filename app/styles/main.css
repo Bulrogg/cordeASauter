@@ -3,13 +3,32 @@ body {
   padding-bottom: 10px;
 }
 
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 15px;
-}
-
 tr.active {
 	font-weight: bolder;
+}
+
+.etape-titre, .etape-suite {
+	font-size: 70px;
+	font-weight: bolder;
+}
+
+.entrainement-debut, .entrainement-fin {
+	font-size: 20px;
+}
+
+.etape-suite, .entrainement-fin {
+	float: right;
+}
+
+.etat-preparation {
+
+}
+.etat-effort {
+	color:green;
+}
+.etat-repos {
+	color:red;	
+}
+.etat-termine {
+	color:blue;
 }
