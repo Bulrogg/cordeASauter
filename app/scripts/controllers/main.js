@@ -8,6 +8,7 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
   $scope.etat.etapeEnCours = 'CONFIGURATION'; 
 
   $scope.configurationEntrainements = [
+  //{ id:0, dureeTotale:20, tempsEffort:4, tempsRecuperation:6 },
   { id:1, dureeTotale:5*60, tempsEffort:10, tempsRecuperation:20 },
   { id:2, dureeTotale:8*60, tempsEffort:10, tempsRecuperation:20 },
   { id:3, dureeTotale:10*60, tempsEffort:15, tempsRecuperation:15 },
@@ -104,8 +105,9 @@ angular.module('corde-a-sauter-app').controller('main-controller', ['$scope','$i
   return function(nbSecond) {
     var nbMin = Math.floor(nbSecond / 60);
     var nbSec = nbSecond % 60;
+    if (nbMin == 0 && nbSec == 0) return '0 sec';
     var minStr = nbMin > 0 ? nbMin + ' min' : '';
-    var secStr = nbSec >= 0 ? nbSec + ' sec' : '';
+    var secStr = nbSec > 0 ? nbSec + ' sec' : '';
     return minStr + ' ' + secStr;
   };
 });
